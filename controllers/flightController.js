@@ -21,14 +21,21 @@ exports.allFlights = (req, res)=>{
 }
 
 exports.bookFlights = (req, res)=>{
-console.log(req)
-    res.end({
-        status: "Flight Booked",
-        title,
-        time,
-        price,
-        date: new Date()
-    })
+    if (!req.body) {
+        res.status(400).send({ message: "Content can not be empty" });
+        return;
+      }
+    
+      const book = {
+        title: req.body.title,
+        time: req.body.time,
+        price: req.body.price,
+        date: new Date(),
+      };
+
+      flight.push(book)
+
+      res.send(book)
 }
 
 
